@@ -1,25 +1,27 @@
-#include "SoftwareSerial.h"// import the serial library\
-
+  #include "SoftwareSerial.h"// import the serial library\
 
 const int trigPin = 13; // Trigger Pin of Ultrasonic Sensor
 const int echoPin = 12; // Echo Pin of Ultrasonic Sensor
 long duration, distanceCm; // define time duration , distance in inches ,and cm
-float minObstacleDistance = 5 ; // min distace of obstacle detection
+float minObstacleDistance = 12 ; // min distace of obstacle detection
+
+
 
 long microsecondsToCentimeters(long microseconds)
-{return microseconds / 29 / 2;}
+{return (microseconds / 29 / 2);}
 
 
-
-/////SETUP/////////////////////////////////////////////////////////////////////////////////
 void setup() {
+// Ultra sonic stuff
 Serial.begin(9600); // Starting Serial Terminal
 pinMode (trigPin , OUTPUT ) ;
 pinMode (echoPin , INPUT ) ; 
+
 }
 
 
 void loop() {
+
  digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
@@ -29,18 +31,21 @@ void loop() {
  duration = pulseIn(echoPin, HIGH);
  distanceCm = microsecondsToCentimeters(duration);
 
+Serial.println(distanceCm) ;
 
+int xxx;
   if ( distanceCm < minObstacleDistance ) 
-  return 1 ; 
+  xxx = 1 ; 
 
   else 
-  return 0 ;
+  xxx = 0 ;
   
-}
+Serial.println(xxx) ;
+
+
 
 
 }
-
 
 
 
