@@ -1,4 +1,4 @@
-// sketch 10-02 Internet Pins
+//Internet Pins
 
 #include <SPI.h>
 #include <Ethernet.h>
