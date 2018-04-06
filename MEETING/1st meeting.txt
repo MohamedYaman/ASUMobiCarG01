@@ -1,0 +1,6 @@
+<
+*we divided ourselves into : three went to buy the components which we used , three wrote the code and the rest of the team constructed the car module.
+*we wrote the code which made the car to move "forward,backword,left and right"
+*we tried to consruct the module of our car by 2 H-Bridge .
+*uploaded the code on arduino "Uno" to move the car but it didn't move so we modified on the code then went to our homes
+>
