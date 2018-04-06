@@ -1,0 +1,8 @@
+<
+*we added the code of ultrasonic sensor to the original code.
+*we uploaded the code on the arduino.
+*three went to buy some of components we needed"ultrasonic sensor,other sensors".
+*three of us constructed the ultrasonic circuit on the car.
+*when we tried the car motion ,we found the car motion is right but the ultrasonic sensor stopped the car when it detected any thing in front of the car.
+*we modified the code in the second time to solve the problem but we failed so we ended our meeting .
+>
