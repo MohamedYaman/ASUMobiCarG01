@@ -1,0 +1,4 @@
+  First , We maked sure that all the component are workd fine individual 
+then we chanted and tested the code again and a upload it on the Arduino
+The  car worked fine .
+But we thought that one H-bridge is enough and we all agreed to remove  the 2nd one in the next time .
