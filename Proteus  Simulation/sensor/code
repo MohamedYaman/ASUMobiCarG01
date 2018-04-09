@@ -1,0 +1,75 @@
+const int IN1 = 4;
+const int IN2 = 5;
+const int IN3 = 6;
+const int IN4 = 7;
+const int L = 8;
+const int R = 9;
+const int C = 10;
+
+void setup() 
+{
+  Serial.begin(9600);
+  pinMode (IN1, OUTPUT); 
+  pinMode (IN2, OUTPUT);
+  pinMode (IN3, OUTPUT); 
+  pinMode (IN4, OUTPUT);  
+  pinMode (L , INPUT);
+  pinMode (R , INPUT);
+  pinMode (C , INPUT);
+
+}
+
+void loop() 
+{
+  if(digitalRead(L) == HIGH && digitalRead(C) == LOW && digitalRead(R) == HIGH)
+          {
+            digitalWrite(IN1, LOW);
+            digitalWrite(IN2, HIGH);
+            digitalWrite(IN3, LOW);
+            digitalWrite(IN4, HIGH);
+          }
+  if(digitalRead(L) == HIGH && digitalRead(C) == HIGH && digitalRead(R) == LOW)
+          {
+            digitalWrite(IN1, LOW);
+            digitalWrite(IN2, HIGH);
+            digitalWrite(IN3, HIGH);
+            digitalWrite(IN4, LOW);
+          }
+  if(digitalRead(L) == LOW && digitalRead(C) == HIGH && digitalRead(R) == HIGH)
+          {
+            digitalWrite(IN1, HIGH);
+            digitalWrite(IN2, LOW);
+            digitalWrite(IN3, LOW);
+            digitalWrite(IN4, HIGH);
+          }
+  if(digitalRead(L) == HIGH && digitalRead(C) == LOW && digitalRead(R) == LOW)
+          {
+            digitalWrite(IN1, LOW);
+            digitalWrite(IN2, HIGH);
+            digitalWrite(IN3, HIGH);
+            digitalWrite(IN4, LOW);
+          }
+  if(digitalRead(L) == LOW && digitalRead(C) == LOW && digitalRead(R) == HIGH)
+          {
+            digitalWrite(IN1, HIGH);
+            digitalWrite(IN2, LOW);
+            digitalWrite(IN3, LOW);
+            digitalWrite(IN4, HIGH);
+          }
+  if(digitalRead(L) == LOW && digitalRead(C) == LOW && digitalRead(R) == LOW)
+          {
+            digitalWrite(IN1, LOW);
+            digitalWrite(IN2, HIGH);
+            digitalWrite(IN3, LOW);
+            digitalWrite(IN4, HIGH);
+          }
+  if(digitalRead(L) == HIGH && digitalRead(C) == HIGH && digitalRead(R) == HIGH)
+          {
+            digitalWrite(IN1, LOW);
+            digitalWrite(IN2, LOW);
+            digitalWrite(IN3, LOW);
+            digitalWrite(IN4, LOW);
+          }
+          
+
+}
