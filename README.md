@@ -5,7 +5,7 @@ Mobile controlled rc car (2nd-elec. ASU Project)
 Team Members:
 ---------------
 Mohamed Yaman
-mohamed Midhat
+Mohamed Midhat
 Aya Osama
 Naiera Khaled
 Mahmoud Kholeif
