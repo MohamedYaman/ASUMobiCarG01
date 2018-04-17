@@ -1,0 +1,46 @@
+    #include <Wire.h>
+    #include <car_MotorShield.h>
+    #include "utility/car_MS_PWMServoDriver.h"
+     
+    // Create the motor shield object with the default I2C address
+    Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
+     
+    // And connect 2 DC motors to port M1 & M2 !
+    car_DCMotor *L_MOTOR = AFMS.getMotor(1);
+    car_DCMotor *R_MOTOR = AFMS.getMotor(2);
+     
+    // And connect the Sharp distance sensors
+    int leftSensor = A0;
+    int rightSensor = A1;
+     
+    void setup() {
+      Serial.begin(9600);           // set up Serial library at 9600 bps
+      Serial.println(" car Motorshield v2 - DC Motor test!");
+     
+      pinMode(leftSensor, INPUT); // set up distance sensor pins
+      pinMode(rightSensor, INPUT);
+     
+      AFMS.begin();  // create with the default frequency 1.6KHz
+     
+    }
+     
+    void loop() {
+      L_MOTOR->setSpeed(200); 
+      R_MOTOR->setSpeed(200);
+      L_MOTOR->run(FORWARD);
+      R_MOTOR->run(FORWARD);
+     
+      while (digitalRead(rightSensor) == LOW){
+        L_MOTOR->setSpeed(100); 
+        R_MOTOR->setSpeed(100);
+        L_MOTOR->run(BACKWARD);
+        R_MOTOR->run(RELEASE);
+      }
+     
+      while (digitalRead(leftSensor) == LOW){
+        L_MOTOR->setSpeed(100); 
+        R_MOTOR->setSpeed(100);
+        L_MOTOR->run(RELEASE);
+        R_MOTOR->run(BACKWARD);
+      }
+    }
