@@ -1,0 +1,7 @@
+we tried to modify our car to make line follower stage.
+1/modify yhe code of line follower.
+2/we changed the arduino.
+3/put another infrared with the old one .
+4/changed the speed.
+5/we found that when we put the old infrared ,we put it in the opposite direction"the left in the right"
+Unfortunately,when we tried to turn on the car it didn't do well.
