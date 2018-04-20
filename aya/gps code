@@ -1,0 +1,83 @@
+int outvalue =0;;  
+const int GPWM = 9; 
+const int BPWM = 10;
+int invalue;
+ 
+#include <SoftwareSerial.h>// import the serial library
+
+SoftwareSerial Genotronex(11, 12); // TX, RX
+int BluetoothData; // the data given from Computer
+
+void setup()
+{
+Serial.begin(57600);
+Genotronex.begin(9600);
+Serial.println("Enter Value to write (60-195)");
+TCCR2B = (TCCR2B & 0xF8) | 0x01;// timer frequency is 4khz
+}
+
+void loop() 
+{ 
+if (Genotronex.available())
+{
+BluetoothData=Genotronex.read();
+  invalue= BluetoothData;    
+
+if (invalue == 'u')
+{
+  Serial.println("Volume up");
+  outvalue= 45;
+  GreenDigibutton();
+}
+if (invalue == 'd')
+{
+  Serial.println("Volume down");
+  outvalue= 35;
+  GreenDigibutton();
+}
+if (invalue == 'm')
+{
+  Serial.println("Mode change");
+  outvalue= 65;
+  GreenDigibutton();
+}
+if (invalue == 's')
+{
+  Serial.println("Stop");
+  outvalue= 75;
+  GreenDigibutton();
+}
+if (invalue == 'p')
+{
+  Serial.println("Prev. Channel");
+  outvalue= 35;
+  BlueDigibutton();
+}
+if (invalue == 'n')
+{
+  Serial.println("Next Channel");
+  outvalue= 45;
+  BlueDigibutton();
+}
+  
+   }
+   
+  }
+
+void GreenDigibutton()
+{     
+  analogWrite(GPWM, outvalue);
+  delay(200);
+  analogWrite(GPWM, 0);
+    delay(200);
+     Serial.println("DONE"); 
+}
+
+void BlueDigibutton()
+{     
+  analogWrite(BPWM, outvalue);
+  delay(200);
+  analogWrite(BPWM, 0);
+    delay(200);
+     Serial.println("DONE"); 
+}
