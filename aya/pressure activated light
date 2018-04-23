@@ -1,0 +1,77 @@
+int sensorReading = 0;
+int r0 = 0;
+int r1 = 0;
+int r2 = 0;
+int w0 = 0;
+int w1 = 0;
+int w2 = 0;
+int count = 0;
+
+void setup() {
+  Serial.begin(9600);
+
+//initialize digital arduino pins as outputs to control the selecting process for our 4051 multiplexers
+  pinMode(2, OUTPUT); //r0
+  pinMode(3, OUTPUT); //r1
+  pinMode(4, OUTPUT); //r2
+  pinMode(8, OUTPUT); //w0
+  pinMode(9, OUTPUT); //w1
+  pinMode(10, OUTPUT); //w2
+}
+
+
+void loop(){
+
+//cycle through each piezo disk and corresponding string of LEDs
+  for(int i  = 0 ; i < 8; i++){
+
+//read the analog value of the piezo disk pressure sensor
+    reading(i);
+
+//send the trigger from the pressure to the LEDs
+    writing(i);
+  }
+}
+
+
+void reading(int sensor){
+
+//uses binary to select the correct input to read on the 4051 multiplexer
+  sensorReading = 0;
+  r0 = bitRead(sensor, 0);
+  r1 = bitRead(sensor, 1);
+  r2 = bitRead(sensor, 2);
+  digitalWrite(2, r0);
+  digitalWrite(3, r1);
+  digitalWrite(4, r2);
+  sensorReading = analogRead(A5);
+
+//slowly prints results to the serial monitor
+  count++;
+  if(count % 1000 == 0){
+    Serial.println(sensorReading);
+  }
+}
+
+
+void writing(int LED){
+
+//uses binary to select the correct output to write to on the 4051, here used as a demultiplexer 
+  w0 = bitRead(LED, 0);
+  w1 = bitRead(LED, 1);
+  w2 = bitRead(LED, 2);
+  digitalWrite(8, w0);
+  digitalWrite(9, w1);
+  digitalWrite(10, w2);
+
+//if measured pressure above a certain threshold, trigger string of LEDs
+  if (sensorReading >= 15){
+    analogWrite(A0, sensorReading*25);
+    delay(125);
+  }
+
+//otherwise, leave LEDs off
+  else{
+    analogWrite(A0,0);
+  }
+}
