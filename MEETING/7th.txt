@@ -1,0 +1,5 @@
+* we maked sure that the line follower sensor is working well
+* tried the code to cheak the speedes
+* tried the car on the track more than one time to cheak the proper speed 
+* In the end we filmed the car's lab and uplooded it 
+
