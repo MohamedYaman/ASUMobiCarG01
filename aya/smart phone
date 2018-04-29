@@ -1,0 +1,52 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(7, 6, 5, 4, 3, 2);
+
+void setup() {
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  Serial.begin(9600);
+  lcd.begin(16, 2);
+  lcd.print("**AUTOMATION**");
+}
+
+void loop() {
+  if (Serial.available() > 0)
+  { 
+    char c = Serial.read();
+    if (c == 'a')
+    {
+     Serial.print("in a code");
+     digitalWrite(10,HIGH);
+     digitalWrite(11,LOW);
+     Serial.print("10 HIGH");
+     lcd.clear();
+     lcd.print("**BULB1 ON**");
+    }
+    
+    if(c=='b')
+    {
+     digitalWrite(11,HIGH);
+     digitalWrite(10,LOW);
+     Serial.print("11 HIGH");
+     lcd.clear();
+     lcd.print("**BULB2 ON**");
+    }
+    
+    if(c=='c')
+    {
+     digitalWrite(10,HIGH);
+     digitalWrite(11,HIGH);
+     lcd.clear();
+     lcd.print("**BULB 1,2 ON**");
+    }
+    
+    if(c=='d')
+    {
+     digitalWrite(10,LOW);
+     digitalWrite(11,LOW);
+     lcd.clear();
+     lcd.print("**BULB 1,2 OFF**");
+    }
+  }
+}
+ 
